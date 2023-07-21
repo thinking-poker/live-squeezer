@@ -11,6 +11,7 @@
 
 import DialogAction from './dialog-action.vue';
 import DialogStreet from './dialog-street.vue';
+import DialogSaveRemote from './dialog-save-remote.vue';
 import DialogSave from './dialog-save.vue';
 import DialogLocalStorage from './dialog-local-storage.vue';
 import DialogExport from './dialog-export.vue';
@@ -24,6 +25,7 @@ export default {
 
 		'app-dialog-action': DialogAction,
 		'app-dialog-street': DialogStreet,
+		'app-dialog-save-remote': DialogSaveRemote,
 		'app-dialog-save': DialogSave,
 		'app-dialog-local-storage': DialogLocalStorage,
 		'app-dialog-export': DialogExport,

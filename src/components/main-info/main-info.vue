@@ -1,3 +1,4 @@
+
 <template>
 
 	<fieldset>
@@ -13,6 +14,7 @@
 			</template>
 
 		</app-mi-slot>
+		11{{test}}22
 
 	</fieldset>
 
@@ -27,6 +29,7 @@
 import MainInfoSlot from './main-info-slot.vue';
 import MainInfoCell from './main-info-cell.vue';
 import { head } from '../../units/absx.js';
+import { db } from '../../db';
 
 const numberOption = (v, k) => ({ value: k + 1, text: k + 1 });
 const oneToNineOptions = Array.from(Array(9), numberOption);
@@ -139,8 +142,12 @@ export default {
 	data() {
 
 		return {
-			values: {}
+			values: {},
+			test: []
 		};
+	},
+	firestore: {
+		test: db.collection('test'),
 	},
 
 	created() {

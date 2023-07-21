@@ -14,6 +14,7 @@ import { getLocalStorageMaxSize } from './extra/fns';
 import { bytes } from './units/vikFunctions';
 
 
+
 export default class View {
 
     constructor() {
@@ -50,6 +51,7 @@ export default class View {
         this.startActionVue = this.vm.$children[0].$refs['start-action'];
         this.dialogActionVue = this.vm.$children[0].$refs['dialog-action'].Vue;
         this.dialogStreetVue = this.vm.$children[0].$refs['dialog-street'].Vue;
+        this.dialogSaveVueRemote = this.vm.$children[0].$refs['dialog-save-remote'].Vue;
         this.dialogSaveVue = this.vm.$children[0].$refs['dialog-save'].Vue;
         this.dialogLocalStorageVue = this.vm.$children[0].$refs['dialog-local-storage'].Vue;
         this.dialogExportVue = this.vm.$children[0].$refs['dialog-export'].Vue;
@@ -203,6 +205,7 @@ export default class View {
     }
 
     printActivity(histories) {
+        console.log(histories)
 
         this.handHistoryVue.printActivity(histories);
     }
@@ -456,6 +459,7 @@ export default class View {
 
     enabledCompleteButtons() {
 
+        this.dialogSaveVueRemote.isSaveEnabled = true;
         this.dialogSaveVue.isAppendToEnabled = true;
         this.dialogSaveVue.isSaveAsNewEnabled = true;
         this.dialogLocalStorageVue.isSaveEnabled = true;
@@ -492,6 +496,7 @@ export default class View {
         // this.dialogSaveVue.$refs['file-upload'].value = null;
         this.dialogSaveVue.abateAppendedFile();
 
+        this.dialogSaveVueRemote.isSaveEnabled = false;
         this.dialogSaveVue.isSaveAsNewEnabled = false;
         this.dialogLocalStorageVue.isSaveEnabled = false;
         this.dialogExportVue.isReplayerEnabled = false;
@@ -544,6 +549,7 @@ export default class View {
     tryEnableLocalStorageSaveButton() {
 
         this.dialogLocalStorageVue.tryEnableSaveButton();
+        this.dialogSaveVueRemote.tryEnableSaveButton();
     }
 
 }

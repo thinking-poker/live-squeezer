@@ -33,6 +33,11 @@
 				></app-dialog>
 
 				<app-dialog
+					ref="dialog-save-remote"
+					:item="'app-dialog-save-remote'"
+				></app-dialog>
+
+				<app-dialog
 					ref="dialog-save"
 					:item="'app-dialog-save'"
 				></app-dialog>

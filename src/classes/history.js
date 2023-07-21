@@ -5,7 +5,7 @@ import Player from './player.js';
 class History {
 
     constructor(players = null, currentBet = 0, street = 0,
-        streetCards = null, log = '', action = '', player = null) {
+        streetCards = null, log = '', action = '', player = null, timestamp = new Date().getTime() / 1000, subtitle = '') {
 
         this.players = players;
         this.currentBet = currentBet;
@@ -14,6 +14,8 @@ class History {
         this.log = log;
         this.action = action;
         this.player = player;
+        this.timestamp = timestamp;
+        this.subtitle = this.subtitle;
     }
 
     static initHistory(histories, mainInfo) {

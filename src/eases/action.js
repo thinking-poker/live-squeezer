@@ -45,6 +45,12 @@ class Action {
         else this.betsOrRaises();
     }
 
+    subtitle(action) {
+        const { history, player } = this;
+        let name = player.isHero ? 'Hero' : player.name
+        history.subtitle = `${name} (${player.position}): ${action}`
+    }
+
     folds() {
 
         const { history, player } = this;
@@ -53,6 +59,7 @@ class Action {
         player.stillPlaying = false;
 
         history.log = `${player.name}: folds`;
+        this.subtitle('folds')
     }
 
     calls() {
@@ -82,7 +89,10 @@ class Action {
 
         history.log = `${player.name}: calls ${amount}${allin}`;
 
+        this.subtitle(`calls ${amount}${allin}`)
+
         if (fixValue(call) === 0) history.log = `${player.name}: checks`;
+        this.subtitle('checks')
     }
 
     checks() {
@@ -91,6 +101,7 @@ class Action {
 
         player.acted = true;
         history.log = `${player.name}: checks`;
+        this.subtitle('checks')
     }
 
 
@@ -130,9 +141,12 @@ class Action {
         const raisesAmount = displayAmount(betRaiseValue - history.currentBet);
         const betRaiseAmount = displayAmount(betRaiseValue);
 
-        history.log = history.currentBet === 0
-            ? `${player.name}: bets ${betRaiseAmount}`
-            : `${player.name}: raises ${raisesAmount} to ${betRaiseAmount}`;
+        let log = history.currentBet === 0
+            ? `bets ${betRaiseAmount}`
+            : `raises ${raisesAmount} to ${betRaiseAmount}`;
+
+        history.log = `${player.name}: ${log}`
+        this.subtitle(log);
 
         history.currentBet = betRaiseValue;
         player.currentStack -= betRaiseValue - player.moneyOnStreet;
@@ -143,6 +157,7 @@ class Action {
             player.isAllIn = true;
             player.stillPlaying = false;
             history.log += ' and is all-in';
+            history.subtitle += ' and is all-in'
         }
 
     }
